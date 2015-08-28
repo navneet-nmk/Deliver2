@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                tools:context="com.teenvan.deliver.LoginActivity">
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rollNumberEditText"
+        android:hint="Roll Number"
+        android:layout_marginTop="36dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:id="@+id/passwordEditText"
+        android:hint="Password"
+        android:layout_below="@+id/rollNumberEditText"
+        android:layout_marginTop="5dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginActivityButton"
+        android:text="Login"
+        android:layout_below="@+id/passwordEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="73dp"/>
+
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:id="@+id/notAUserText"
+         android:text="Not a user ?"
+         android:textSize="20sp"
+         android:layout_marginTop="99dp"
+         android:layout_below="@+id/loginActivityButton"
+         android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:id="@+id/signUpDirectButton"
+        android:layout_marginTop="48dp"
+        android:layout_below="@+id/notAUserText"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

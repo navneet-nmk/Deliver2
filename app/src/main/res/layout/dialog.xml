@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+                android:padding="10dp">
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/orderEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Deal Title"/>
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/orderDescriptionEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Deal Description"
+        android:layout_below="@+id/orderEdit"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Deal"
+        android:id="@+id/addDealButton"
+        android:layout_below="@+id/orderDescriptionEdit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="69dp"/>
+
+
+</RelativeLayout>

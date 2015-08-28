@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                tools:context="com.teenvan.deliver.SignUpActivity">
+
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Roll Number"
+        android:id="@+id/signUpRollNumberEdit"/>
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width ="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:id="@+id/nameEdit"
+        android:layout_below="@+id/signUpRollNumberEdit"
+        />
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width ="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:id="@+id/signUpPasswordEdit"
+        android:layout_below="@+id/nameEdit"
+        />
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width ="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Re-Enter Password"
+        android:layout_below="@+id/signUpPasswordEdit"
+        android:id="@+id/reenterPassEdit"
+        />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width= "match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:layout_below="@+id/reenterPassEdit"
+        android:id="@+id/emailEdit"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:id="@+id/signUpActivityButton"
+        android:layout_marginTop="68dp"
+        android:layout_below="@+id/emailEdit"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Already a user ?"
+        android:id="@+id/alreadyUserText"
+        android:layout_above="@+id/loginDirectButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="33dp"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:id="@+id/loginDirectButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"/>
+
+
+</RelativeLayout>
