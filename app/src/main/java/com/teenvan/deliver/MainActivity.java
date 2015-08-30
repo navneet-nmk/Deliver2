@@ -41,9 +41,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Referencing the UI elements
-        mDeallList = (MaterialListView)findViewById(R.id.dealsList);
+
         mAddDealsButton = (FloatingActionButton)findViewById(R.id.mAddDealsButton);
-        mRootLayout = (CoordinatorLayout)findViewById(R.id.rootLayout);
+        mRootLayout = (CoordinatorLayout)findViewById(R.id.mRootLayout);
 
         mAddDealsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("UNDO", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                
+
                             }
                         }).show();
             }
