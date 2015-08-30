@@ -1,7 +1,6 @@
 package com.teenvan.deliver;
 
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 import com.dexafree.materialList.card.Card;
 import com.dexafree.materialList.card.OnButtonClickListener;
@@ -19,7 +19,6 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParsePush;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SendCallback;
 
@@ -42,24 +41,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Referencing the UI elements
-        mRootLayout = (CoordinatorLayout)findViewById(R.id.rootLayout);
         mDeallList = (MaterialListView)findViewById(R.id.dealsList);
-        mAddDealsButton = (FloatingActionButton)findViewById(R.id.mAddDealButton);
+        mAddDealsButton = (FloatingActionButton)findViewById(R.id.mAddDealsButton);
+        mRootLayout = (CoordinatorLayout)findViewById(R.id.rootLayout);
+
         mAddDealsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Show a snack bar
-                Snackbar.make(mRootLayout,"Added the deal",Snackbar.LENGTH_SHORT).
-                        setAction("UNDO", new View.OnClickListener() {
+                // Show a snackbar
+                Snackbar.make(mRootLayout,"Added a deal",Snackbar.LENGTH_SHORT)
+                        .setAction("UNDO", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-
+                                
                             }
                         }).show();
             }
         });
-
-        getCardObject();
 
 
 

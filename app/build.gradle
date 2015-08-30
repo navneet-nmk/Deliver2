@@ -23,6 +23,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
+    compile 'com.android.support:appcompat-v7:23.0.0'
     compile project(':Parse-1.9.4')
     compile 'com.parse.bolts:bolts-android:1.+'
     compile fileTree(include: 'Parse-*.jar', dir: 'libs')

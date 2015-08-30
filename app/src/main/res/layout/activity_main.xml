@@ -6,20 +6,17 @@
                 android:layout_height="match_parent"
                 tools:context=".MainActivity">
 
-
-
-    <CoordinatorLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/rootLayout">
 
-        <FloatingActionButton
+
+        <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabSize="normal"
-            android:id="@+id/mAddDealButton"
-            android:layout_gravity="bottom|right"/>
-
+            android:id="@+id/mAddDealsButton"
+            android:layout_gravity="bottom|end"/>
 
         <com.dexafree.materialList.view.MaterialListView
             android:layout_width="match_parent"
@@ -27,7 +24,6 @@
             android:id="@+id/dealsList"
             />
 
-    </CoordinatorLayout>
-
+  </android.support.design.widget.CoordinatorLayout>
 
 </RelativeLayout>
