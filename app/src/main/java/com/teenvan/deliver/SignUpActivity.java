@@ -1,6 +1,7 @@
 package com.teenvan.deliver;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,8 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.gc.materialdesign.widgets.SnackBar;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -70,9 +69,7 @@ public class SignUpActivity extends AppCompatActivity {
                         reenterpass.isEmpty() || email.isEmpty() ||
                         name.isEmpty()){
                     // Show a snackbar
-                    SnackBar bar = new SnackBar(SignUpActivity.this,
-                            "Please enter all details");
-                    bar.show();
+
                 }else{
                     if(!password.equals(reenterpass)){
                         Toast.makeText(SignUpActivity.this,"Re-enter the same password"
@@ -94,10 +91,8 @@ public class SignUpActivity extends AppCompatActivity {
                                     startActivity(intent);
                                 }else{
                                     // Failure
-                                    Log.e(TAG,"Failure Signing Up",e);
-                                    SnackBar bar = new SnackBar(SignUpActivity.this,
-                                            "There was some problem signing you up");
-                                    bar.show();
+                                    Log.e(TAG, "Failure Signing Up", e);
+
                                 }
                             }
                         });

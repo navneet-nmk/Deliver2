@@ -3,18 +3,17 @@ package com.teenvan.deliver;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.Toast;
-
 import com.dexafree.materialList.card.Card;
 import com.dexafree.materialList.card.OnButtonClickListener;
 import com.dexafree.materialList.card.provider.BasicImageButtonsCardProvider;
 import com.dexafree.materialList.view.MaterialListView;
-import com.gc.materialdesign.views.ButtonFloat;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -23,15 +22,17 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SendCallback;
-import com.rengwuxian.materialedittext.MaterialEditText;
+
 
 import java.util.List;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     // Declaration of member variables
     private MaterialListView mDeallList;
-    private ButtonFloat mAddDealsButton;
+    private FloatingActionButton mAddDealsButton;
+    private CoordinatorLayout mRootLayout;
+
     private Card card;
     private final String TAG = MainActivity.class.getSimpleName();
 
@@ -41,57 +42,23 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         // Referencing the UI elements
+        mRootLayout = (CoordinatorLayout)findViewById(R.id.rootLayout);
         mDeallList = (MaterialListView)findViewById(R.id.dealsList);
-        mAddDealsButton = (ButtonFloat)findViewById(R.id.addDealButton);
-
-        // Setting up the on click listener
+        mAddDealsButton = (FloatingActionButton)findViewById(R.id.mAddDealButton);
         mAddDealsButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                // Add Deals
-                // Show a dialog
-                final Dialog dialog = new Dialog(MainActivity.this);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.dialog);
-                final MaterialEditText mDealTitle = (MaterialEditText) dialog.
-                        findViewById(R.id.orderEdit);
-                final MaterialEditText mDealDescrp = (MaterialEditText) dialog
-                        .findViewById(R.id.orderDescriptionEdit);
-                Button mAddDeals = (Button) dialog.
-                        findViewById(R.id.addDealButton);
-                mAddDeals.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // Get the texts
-                        String title = mDealTitle.getText().toString();
-                        String descrp = mDealDescrp.getText().toString();
-                        // Create a parse object
-                        ParseObject dealObject = new ParseObject("Deals");
-                        dealObject.put("DealTitle", title);
-                        dealObject.put("Order", descrp);
-                        dealObject.put("User", ParseUser.getCurrentUser().getUsername());
-                        dealObject.saveInBackground(new SaveCallback() {
+            public void onClick(View v) {
+                // Show a snack bar
+                Snackbar.make(mRootLayout,"Added the deal",Snackbar.LENGTH_SHORT).
+                        setAction("UNDO", new View.OnClickListener() {
                             @Override
-                            public void done(ParseException e) {
-                                dialog.dismiss();
-                                if (e == null) {
-                                    // Success
-                                    Toast.makeText(MainActivity.this, "Successfully added deal",
-                                            Toast.LENGTH_SHORT).show();
-                                    getCardObject();
-                                } else {
-                                    // Failure
-                                    Log.e(TAG, "Failure adding deal", e);
-                                    Toast.makeText(MainActivity.this, "Failed adding deal",
-                                            Toast.LENGTH_SHORT).show();
-                                }
+                            public void onClick(View v) {
+
                             }
-                        });
-                    }
-                });
-                dialog.show();
+                        }).show();
             }
         });
+
         getCardObject();
 
 
@@ -119,7 +86,7 @@ public class MainActivity extends ActionBarActivity {
                                 .withProvider(BasicImageButtonsCardProvider.class)
                                 .setTitle(title)
                                 .setDescription(order)
-                                .setDrawable(R.drawable.ic_launcher)
+                                .setDrawable(R.mipmap.ic_launcher)
                                 .setLeftButtonText("Accept Deal")
                                 .setOnLeftButtonClickListener(new OnButtonClickListener() {
                                     @Override

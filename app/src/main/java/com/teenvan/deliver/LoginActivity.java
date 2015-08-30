@@ -7,8 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.gc.materialdesign.widgets.SnackBar;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -61,9 +59,7 @@ public class LoginActivity extends ActionBarActivity {
                             // Failure
                             Log.e(TAG,"Failed to login the user",e);
                             // Show a snackbar
-                            SnackBar bar = new SnackBar(LoginActivity.this,"Failed to login." +
-                                    "Please Try again!");
-                            bar.show();
+
                         }
                     }
                 });
