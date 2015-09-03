@@ -1,13 +1,18 @@
 package com.teenvan.deliver;
 
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 import com.dexafree.materialList.card.Card;
@@ -19,8 +24,10 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParsePush;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SendCallback;
+import com.rengwuxian.materialedittext.MaterialEditText;
 
 
 import java.util.List;
@@ -31,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private MaterialListView mDeallList;
     private FloatingActionButton mAddDealsButton;
     private CoordinatorLayout mRootLayout;
+    private Toolbar bar;
+    private TabLayout tabLayout;
 
     private Card card;
     private final String TAG = MainActivity.class.getSimpleName();
@@ -41,23 +50,66 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Referencing the UI elements
-
+        tabLayout = (TabLayout)findViewById(R.id.tabLayout);
+        bar = (Toolbar)findViewById(R.id.toolBar);
+        mDeallList = (MaterialListView)findViewById(R.id.mDealsList);
         mAddDealsButton = (FloatingActionButton)findViewById(R.id.mAddDealsButton);
         mRootLayout = (CoordinatorLayout)findViewById(R.id.mRootLayout);
+
+        // Setting support action bar
+        setSupportActionBar(bar);
+
+        // Set Tabs
+        tabLayout.addTab(tabLayout.newTab().setText("Deals"));
+        tabLayout.addTab(tabLayout.newTab().setText("PickUp"));
 
         mAddDealsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Show a snackbar
-                Snackbar.make(mRootLayout,"Added a deal",Snackbar.LENGTH_SHORT)
-                        .setAction("UNDO", new View.OnClickListener() {
+               // Show a dialog box
+                Dialog dialog = new Dialog(MainActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog);
+                // Referencing the UI elements
+                final MaterialEditText orderEdit = (MaterialEditText)
+                        dialog.findViewById(R.id.orderEdit);
+                final MaterialEditText orderDescrEdit = (MaterialEditText)
+                        dialog.findViewById(R.id.orderDescriptionEdit);
+                Button addDealsButton = (Button)dialog.findViewById(R.id.addDealButton);
+                addDealsButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Get the relevant inputs
+                        String title = orderEdit.getText().toString();
+                        String descrp = orderDescrEdit.getText().toString();
+                        // Creating a parseobject
+                        ParseObject order = new ParseObject("Deals");
+                        order.put("Title",title);
+                        order.put("Summary",descrp);
+                        order.put("User", ParseUser.getCurrentUser().getUsername());
+                        order.saveEventually(new SaveCallback() {
                             @Override
-                            public void onClick(View v) {
-
+                            public void done(ParseException e) {
+                                if(e==null){
+                                    // Success
+                                    Log.d(TAG,"Object Saved Successfully");
+                                    getCardObject();
+                                }else{
+                                    // Failure
+                                    Log.e(TAG,"Failure Saving",e);
+                                    Snackbar.make(mRootLayout,"Failed saving object",
+                                            Snackbar.LENGTH_SHORT).show();
+                                }
                             }
-                        }).show();
+                        });
+                    }
+                });
+                dialog.show();
+
             }
         });
+
+        getCardObject();
 
 
 

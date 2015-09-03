@@ -10,6 +10,8 @@
     <style name="Base.AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="android:colorAccent" tools:targetApi="lollipop">#a62020</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
 </resources>
